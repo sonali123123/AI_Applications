@@ -1,0 +1,30 @@
+Approach
+
+The application is designed to process educational videos by extracting meaningful content through three main functionalities:
+
+Audio Extraction and Transcription: The video URL provided by the user is processed to extract the audio. This is done using the yt_dlp library, which downloads the best audio quality. The downloaded audio is then converted to MP3 format using the pydub library. The audio file is transcribed using the Whisper ASR model, resulting in a text transcription.
+
+Summarization of Transcription: The transcription is fed into the langchain library with the ChatOllama model, which is used to summarize the content. The text is split into chunks for better processing with the RecursiveCharacterTextSplitter, and a summarization chain is applied to generate a concise summary of the transcription.
+
+Caption Generation: The transcription text is also passed through the langchain library to generate a short caption summarizing the content. A specialized prompt is used to produce a caption that is no more than five words long, providing a succinct description of the content.
+
+Results
+The application performs the following tasks:
+
+Audio Extraction and Transcription: The audio from the video is downloaded and transcribed into text. This is the first step in processing the video.
+
+Summarization: The transcription is summarized, providing a concise overview of the content, which is then displayed in the app.
+
+Caption Generation: A short caption is generated that summarizes the video in no more than five words.
+
+Key Features
+Educational Video Processing: Allows users to process educational videos by extracting the audio, generating transcriptions, summaries, and captions.
+User-Friendly Interface: The user can easily input a video URL and get the results (summary and caption) displayed in the app.
+Streamlit Web Interface: The app uses Streamlit for building the interactive web interface, with a simple sidebar navigation for easy access to different pages (Home, Process Video, About).
+Limitations
+Audio Quality: The accuracy of transcription and summarization is highly dependent on the audio quality of the video.
+Processing Time: The processing of the video, particularly summarization and transcription, may take some time depending on the length of the video.
+Future Enhancements
+Multi-language Support: Add support for transcriptions and summaries in multiple languages.
+Error Handling: Implement better error handling for cases where the video URL is invalid or the transcription fails.
+Custom Summarization Models: Integrate custom summarization models to allow for more personalized summaries based on user preferences.

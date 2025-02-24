@@ -1,0 +1,9 @@
+streamlit
+regex
+PyMuPDF
+python-docx
+transformers
+torch
+plotly
+pandas
+nltk
