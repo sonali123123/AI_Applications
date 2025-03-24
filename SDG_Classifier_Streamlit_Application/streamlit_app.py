@@ -33,15 +33,11 @@ with col3:
     st.image(r"D:\Sonali_AI_Projects\Woxsen_Projects\AI_Tools\SDG_Classifier_Streamlit_Application\\Img\Wox.jpeg", width=500)  # Replace with actual path or URL
 
 
-<<<<<<< HEAD
+
 logo1_base64 = get_base64_image("Img\Wox.jpeg")
 
 watermark_base64 = get_base64_image("Img\AIRC.jpeg")
-=======
-logo1_base64 = get_base64_image("pdf_data\Wox.jpeg")
 
-watermark_base64 = get_base64_image("pdf_data\AIRC.jpeg")
->>>>>>> 3c446be130b95f44ac17d8f159c20784680fc473
 
 def extract_text_from_pdf(pdf_file):
     """Extract text from an uploaded PDF file."""
@@ -140,29 +136,10 @@ if submitted and uploaded_files:
     
     if results:
         df_results = pd.DataFrame(results)
-<<<<<<< HEAD
-=======
-        # st.markdown("### Download Results")
-        # st.download_button(
-        #     label="📥 Download SDG Predictions CSV File",
-        #     data=df_results.to_csv(index=False).encode('utf-8'),
-        #     file_name="SDG_Predictions.csv",
-        #     mime="text/csv"
-        # )
-        
-        # For demonstration, we'll generate a certificate for the first processed file.
-        # You can extend this logic to allow users to select which certificate they want.
->>>>>>> 3c446be130b95f44ac17d8f159c20784680fc473
         first_result = results[0]
         predicted_sdg = first_result["Predicted SDG"].replace('*','')
 
         def extract_goal(predicted_sdg):
-<<<<<<< HEAD
-    
-=======
-    # Search for the pattern "GOAL" followed by a number, a colon, and the rest of the string.
->>>>>>> 3c446be130b95f44ac17d8f159c20784680fc473
-             
                 predicted_sdg = predicted_sdg.replace('*', '')
                 
                 # Find the index of the first occurrence of "GOAL".
