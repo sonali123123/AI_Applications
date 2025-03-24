@@ -1,9 +1,7 @@
 streamlit
-regex
 PyMuPDF
 python-docx
-transformers
-torch
-plotly
 pandas
 nltk
+langchain
+langchain_ollama
