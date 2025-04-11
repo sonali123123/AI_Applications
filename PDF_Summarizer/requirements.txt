@@ -1,5 +1,6 @@
 langchain-community
-openai
+langchain
+langchain-ollama
 streamlit
 pypdf
 faiss-cpu

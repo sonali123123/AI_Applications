@@ -1,14 +1,13 @@
-import os
-from constants import openai_api_key
-from langchain_community.llms import OpenAI
-from langchain.embeddings.openai import OpenAIEmbeddings
+from InstructorEmbedding import INSTRUCTOR
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.vectorstores import FAISS 
-from langchain.chains.question_answering import load_qa_chain
 import streamlit as st
 from PyPDF2 import PdfReader
 from langchain.chains.summarize import load_summarize_chain
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import ChatOllama
+
+# Initialize Ollama model
+llm = ChatOllama(model="llama3.1:8b", temperature=0)
 
 
 #This Function is responsible for summarizing the PDF fules
@@ -18,16 +17,19 @@ def multi_pdf_summariser(vectorstore):
 
     if query:
         docs = vectorstore.similarity_search(query)
-        
-    chain = load_qa_chain(OpenAI(), chain_type = "stuff")
-    summary = chain.run(input_documents=docs, question = query)
+    
+    summary_chain = load_summarize_chain(
+        llm=llm,
+        chain_type='map_reduce'
+    )
+    
+    summary = summary_chain.run(docs)
     st.write(summary)
 
 #This Function is for embedding the text chunks & storing them FAISS vector DB
 def vector_store(text_chunks):
     #Embedding the Texts
-    embeddings = OpenAIEmbeddings()
-
+    embeddings = INSTRUCTOR('hkunlp/instructor-xl',device="cuda")
     #FAISS - Create Vector Store
     vectorstore = FAISS.from_texts(text_chunks, embeddings)
 
